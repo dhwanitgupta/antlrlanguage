@@ -4,7 +4,11 @@ options { tokenVocab=WorkflowLexer; }
 
 program      : line*;
 
-line         : condition | action;
+line         : condition | action | assignment;
+
+assignment   : VAR ID ASSIGN assignmentOptions;
+
+assignmentOptions : constantOption=constant | actionOption=action;
 
 condition    : IF ifExpression=expression THEN thenProgram=program
                (ELSEIF elseIfExpression=expression THEN elseIfProgram=program)*
@@ -14,6 +18,7 @@ expression   :
                 LEFT_PAREN expression RIGHT_PAREN           #parenExpression
               | left=expression op=binary right=expression #binaryExpression
               | action  #actionExpression
+              | variable #variableExpression
               ;
 
 binary       : AND | OR;

@@ -21,8 +21,11 @@ fragment DQ         : '"';
 fragment OPEN_PAREN : '(';
 fragment CLOSE_PAREN: ')';
 fragment COMMA      : ',';
+fragment EQUAL      : '=';
+
 
 STRING              : DQ .*? DQ;
+ASSIGN              : EQUAL;
 VAR                 : V A R;
 AND                 : A N D;
 OR                  : O R;

@@ -1,6 +1,16 @@
+<<<<<<< 9a5e117459c0dd44b9c6ecfae16e50a3d3a5a0ba
 run InitFunction("Hello World")
 if run isPrime(F) and run isAnxious(T) then
   run Anxious("This customer is anxious")
+=======
+var a = "Testing constant input"
+var b = run f2("Testing assignment with function")
+run InitFunction("Hello World")
+if run isPrime(F) and run isAnxious(T) then
+  run Anxious("This customer is anxious")
+elseif a and b then
+  run VariableOption("Variable Option")
+>>>>>>> Improving workflow language
 endif
 
 run EndWithSMS("Ending code with SMS")
