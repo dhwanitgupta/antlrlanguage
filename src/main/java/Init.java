@@ -1,19 +1,31 @@
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 public class Init
 {
-    public static void main( String[] args )
-    {
-        ANTLRInputStream inputStream = new ANTLRInputStream(
-                "F and (T or T)");
-        NoobLexer noobLexer = new NoobLexer(inputStream);
+    public static void main( String[] args ) throws Exception {
+
+        FileReader fr = new FileReader(new Init().getFileName());
+        BufferedReader br = new BufferedReader(fr);
+
+        ANTLRInputStream inputStream = new ANTLRInputStream(br);
+        WorkflowLexer noobLexer = new WorkflowLexer(inputStream);
         CommonTokenStream commonTokenStream = new CommonTokenStream(noobLexer);
-        NoobParser noobParser = new NoobParser(commonTokenStream);
+        WorkflowParser workflowParser = new WorkflowParser(commonTokenStream);
 
-        NoobParser.NoobContext fileContext = noobParser.noob();
+        WorkflowParser.ProgramContext fileContext = workflowParser.program();
 
-        NoobVisitor visitor = new NoobVisitor();
+        WorkflowVisitor visitor = new WorkflowVisitor();
         System.out.println(visitor.visit(fileContext));
+    }
+
+    public String getFileName() {
+        ClassLoader classLoader = getClass().getClassLoader();
+
+        return classLoader.getResource("input").getFile();
     }
 }

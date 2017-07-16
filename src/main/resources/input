@@ -1,0 +1,6 @@
+run InitFunction("Hello World")
+if run isPrime(F) and run isAnxious(T) then
+  run Anxious("This customer is anxious")
+endif
+
+run EndWithSMS("Ending code with SMS")

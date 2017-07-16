@@ -2,7 +2,7 @@ lexer grammar WorkflowLexer;
 
 fragment LETTERS    : [a-zA-Z] ;
 fragment DIGITS     : [0-9];
-
+fragment ID_CHAR_SET: [a-zA-Z0-9];
 fragment A          : ('A'|'a') ;
 fragment N          : ('N'|'n') ;
 fragment D          : ('D'|'d') ;
@@ -16,15 +16,25 @@ fragment E          : ('E'|'e');
 fragment T          : ('T'|'t');
 fragment L          : ('L'|'l');
 fragment S          : ('S'|'s');
+fragment V          : ('V'| 'v');
+fragment DQ         : '"';
+fragment OPEN_PAREN : '(';
+fragment CLOSE_PAREN: ')';
+fragment COMMA      : ',';
 
+STRING              : DQ .*? DQ;
+VAR                 : V A R;
 AND                 : A N D;
 OR                  : O R;
 RUN                 : R U N;
 IF                  : I F;
 THEN                : T H E N;
 ELSE                : E L S E;
+ELSEIF              : E L S E I F;
 ENDIF               : E N D I F;
-FUNCTION_NAME       : LETTERS+;
+ID                  : ID_CHAR_SET+;
+DOUBLE_QUOTE        : DQ;
+LEFT_PAREN          : OPEN_PAREN;
+RIGHT_PAREN         : CLOSE_PAREN;
+COMMA_SEPARATOR     : COMMA;
 WS                  : [ \t\r\n] -> skip ;
-LEFT_PAREN          : '(';
-RIGHT_PAREN         : ')';
