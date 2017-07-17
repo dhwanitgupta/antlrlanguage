@@ -19,6 +19,11 @@ public class WorkflowVisitor extends WorkflowParserBaseVisitor<Object> {
     }
 
     @Override
+    public Object visitVariableExpression(WorkflowParser.VariableExpressionContext ctx) {
+        return Boolean.FALSE;
+    }
+
+    @Override
     public Object visitCondition(WorkflowParser.ConditionContext ctx) {
         List<WorkflowParser.ExpressionContext> expressionContexts = ctx.expression();
         List<WorkflowParser.ProgramContext> programContexts = ctx.program();

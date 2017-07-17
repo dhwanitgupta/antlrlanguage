@@ -16,9 +16,13 @@ public class Init
         WorkflowLexer noobLexer = new WorkflowLexer(inputStream);
         CommonTokenStream commonTokenStream = new CommonTokenStream(noobLexer);
         WorkflowParser workflowParser = new WorkflowParser(commonTokenStream);
-
+        workflowParser.removeErrorListeners();
+        ThrowingErrorListener throwingErrorListener = new ThrowingErrorListener();
+        workflowParser.addErrorListener(throwingErrorListener);
         WorkflowParser.ProgramContext fileContext = workflowParser.program();
-
+        if (throwingErrorListener.isErrorOccured()) {
+            throw new Exception("Parse Syntax Error: \n" + throwingErrorListener.getErrors());
+        }
         WorkflowVisitor visitor = new WorkflowVisitor();
         System.out.println(visitor.visit(fileContext));
     }

@@ -1,6 +1,6 @@
 var a = "Testing constant input"
 var b = run f2("Testing assignment with function")
-run InitFunction("Hello World")
+run InitFunction()
 if run isPrime(F) and run isAnxious(T) then
   run Anxious("This customer is anxious")
 elseif a and b then
